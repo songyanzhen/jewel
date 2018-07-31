@@ -1,0 +1,98 @@
+#main {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: auto;
+}
+#main > div {
+    vertical-align: top;
+}
+
+#photo {
+	padding-left: 1.5rem;
+	height: 100%;
+	width: 95%;
+}
+/*图片列表*/
+ul {
+    min-width: 100%;
+    margin-top: 0.5rem;
+    height: 5rem;
+    overflow-y: hidden;
+    white-space:nowrap;
+    display: -webkit-box;
+    /*overflow-x: auto;*/
+    -webkit-overflow-scrolling:touch;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+img {
+	object-fit: cover;
+}
+        /*ul li img { max-width: 80px; height: auto; }*/
+#imgList li img {
+	width: 5rem;
+    height: 5rem;
+}
+#imgList li{
+    display: inline-block;
+    margin-right: 0.5rem;
+    list-style-type:none;
+	height: 5rem;
+}
+
+
+#text {
+	/*display: inline-block;*/
+	margin-left: 1.5rem;
+	height: 100%;
+	width: 90%;
+    /*text-align: left !important;*/
+    color: #333333;
+}
+
+#text h3 {
+    font-size: 18px;
+    padding-bottom: 0.8rem;
+    margin: 0;
+}
+#text h4 {
+    font-size: 18px;
+    padding-bottom: 0.5rem;
+    margin: 0;
+}
+#text p {
+    font-size: 14px;
+    line-height: 20px;
+    text-align:justify;
+    text-justify:inter-ideograph;
+}
+#footer {
+    /*margin-top: 0.5rem;*/
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+#footer p {
+	padding-top: 0.5rem;
+    color: #666666;
+}
+.contact {
+    padding-top: 1.2rem;
+	width: 50%;
+    margin-left: 25%;
+	text-align: center;
+}
+.con {
+	margin-top: 0.6rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+	color: #666666 !important;
+}
+.con:visited {
+    color: #666666;
+}
+.con:hover, .con:active{
+	color: #333333 !important;
+}

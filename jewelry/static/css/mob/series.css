@@ -1,0 +1,71 @@
+#main {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: auto;
+}
+#list {
+	width: 100%;
+	height: auto;
+}
+.series {
+	width: 100%;
+	height: 22rem;
+	position: relative;
+	overflow: hidden;
+}
+.seriesPic {
+    width: 100%;
+    height: 100%;
+    /*margin-top: 2%;*/
+    overflow: hidden;
+	/*background: url("/static/images/jewel1.jpg") center center no-repeat;*/
+	background-size: cover;
+}
+.seriesName {
+    width: 100%;
+    height: 100%;
+    position:absolute;
+    left:0;
+    top:0;
+    text-align: center;
+    /*display: none;*/
+    background-color: rgba(0,0,0,0.6);
+}
+.seriesName h3 {
+    font-size: 3.5rem;
+    line-height: 22rem;
+    letter-spacing: 0.4rem;
+    color: #cccccc;
+    margin: 0;
+}
+
+#footer {
+    bottom: 0;
+    /*margin-top: 0.5rem;*/
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+#footer p {
+	padding-top: 0.5rem;
+    color: #666666;
+}
+.contact {
+    padding-top: 1.2rem;
+	width: 50%;
+    margin-left: 25%;
+	text-align: center;
+}
+.con {
+	margin-top: 0.6rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+	color: #666666 !important;
+}
+.con:visited {
+    color: #666666;
+}
+.con:hover, .con:active{
+	color: #333333 !important;
+}

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" meta name="viewport" content="width=device-width,initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+    <title>YILAN JEWELRY</title>
+    <link Rel="SHORTCUT ICON" href="/static/images/logo.png">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/mob/style.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/mob/jewel.css" rel="stylesheet" type="text/css">
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/static/js/jquery.rotate.min.js" ></script>
+	<script type="text/javascript" src="/static/js/mob/jewel_eng.js" ></script>
+    <script type="text/javascript" src="/static/js/new/menu.js" ></script>
+    <script type="text/javascript" src="/static/js/new/email.js" ></script>
+    <style>
+        .jqueryzoom { position: relative; padding: 0; width: 100%; height: 25rem; display: inline-block; }
+        /*放大镜是基于图片大小自动生成的，每次都要把jqueryzoom中img的大小和jqueryzoom盒子大小设置为一样的，不然放大镜滑块有可能溢出*/
+        .jqueryzoom img {width: 100%; height:100%;}
+        .cloudzoom-gallery-active{opacity: .5}
+    </style>
+    <link href="/static/css/cloudzoom.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/static/js/cloudzoom.js"></script>
+    <!--启动CloudZoom就可以了，quickStart()立即启动-->
+    <script src="/static/js/uaredirect.js" type="text/javascript"></script>
+    <script type="text/javascript">uaredirect("http://47.94.101.205/index_mob_eng/series_mob_eng","http://47.94.101.205/index_eng/series_eng");</script>
+
+</head>
+<body>
+    <div id="content">
+        <div id="upMenu">
+            <div class="title"><a href="/mob_eng/">YILAN JEWELRY</a></div>
+            <div class="openMenu"></div>
+            <div class="menu" style="display: none;">
+                <a class="engMenu" href="/index_mob_eng/series_mob_eng/">Collection</a>
+                <a class="engMenu" href="/index_mob_eng/introduction_mob_eng/">Designer</a>
+                <a class="changeLanguage" href="#">中文</a>
+            </div>
+            <div class="search">
+                <a class="sea" href="javascript:void(0);" target="_blank"><i class="fa fa-search fa-lg"></i></a>
+            </div>
+        </div>
+        <div id="main">
+            <div id="text"></div>
+            <div class="centerdiv"></div>
+            <div id="photo">
+                <div class="jqueryzoom"></div>
+      <!--想切换多张图片，只需要改下面img中src中的路径，以及data-cloudzoom中两个img的路径，注意data-cloudzoom要和img中的路径一摸一样-->
+                <ul id="imgList"></ul>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="modal fade" id="wechatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">WeChat</h4>
+                        <div class="selector">
+                            <div class="append">
+                                <img style="margin-left: 10%; width: 80%;" src="/static/images/wechat.png">
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+    <div>
+        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+                        </button>
+                        <h4 class="modal-title" id="myModalLabel">Email</h4>
+                        <div class="selector">
+{#                            <div class="append">#}
+{#                                <img style="margin-left: 12.5%" src="/static/images/wechat.png">#}
+{#                            </div>#}
+                        </div>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+    </div>
+</body>
+</html>

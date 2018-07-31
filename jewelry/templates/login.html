@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠宝网站管理</title>
+    <link Rel="SHORTCUT ICON" href="http://download.easyicon.net/png/1202904/32/">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/static/css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/smartMenu.css" rel="stylesheet" type="text/css"/>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-accordion-menu.js" ></script>
+
+</head>
+<body>
+<div id="content">
+    <div id="leftMenu">
+        <div id="menuBar">
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
+                <div class="jquery-accordion-menu-header" id="form">设置登录</div>
+                <ul id="demo-list">
+                    <li class="homeLoad"><a href="#"><i class="fa fa-lock "></i>使用前需登录 </a></li>
+                    <li class="active"><a href="login"><i class="fa fa-arrow-right"></i>登录 </a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="main">	
+		<div class="userinfo">
+			<ul>
+				<form id="login" role="form" method="POST" action="#"
+					method="post" enctype="multipart/form-data">
+					<li>
+						<p>用 户 名</p> 
+						<input name="user" class="name" type="text" placeholder="输入用户名" />
+					</li>
+					<li>
+						<p>密 码</p> 
+						<input name="passwd" class="password" type="password" placeholder="输入密码" />
+					</li>
+				</form>
+				<li><input class="loginBtn btn btn-primary btn-lg" style="width: 40%;" type="button" value="登录" /></li>
+			</ul>
+		</div>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+    });
+
+    $(function () {
+    	var flag1 = 0;
+        //顶部导航切换
+        $("#demo-list li").click(function () {
+            $("#demo-list li.active").removeClass("active")
+            $(this).addClass("active");
+        })  
+    })
+</script>
+<script src="/static/js/jquery-smartMenu.js"></script>
+<script type="text/javascript" src="/static/js/login.js"></script>
+
+</html>

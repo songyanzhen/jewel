@@ -1,0 +1,48 @@
+/*轮播图片*/
+#main {
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: 85%;
+}
+.pic {
+	width: 100%;
+	height: 88%;
+	position:absolute;
+	left:0;
+	top:0;
+	background: no-repeat center center;
+	background-size: cover;
+}
+/*/footer*/
+#footer {
+	position: absolute;
+	top: 88%;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+}
+#footer p {
+	padding-top: 0.5rem;
+    color: #666666;
+}
+.contact {
+    padding-top: 1.2rem;
+	width: 50%;
+    margin-left: 25%;
+	text-align: center;
+}
+.con {
+	margin-top: 0.6rem;
+    padding-left: 0.8rem;
+    padding-right: 0.8rem;
+	color: #666666 !important;
+}
+.con:visited {
+    color: #666666;
+}
+.con:hover, .con:active{
+	color: #333333 !important;
+}
+
+

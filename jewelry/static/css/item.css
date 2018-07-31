@@ -1,0 +1,95 @@
+#buttons{
+    height:12%;
+    width:98%;
+    background: #F1F1F1;
+    margin-left: 1%;
+    box-shadow: 5px 5px 3px #888888;
+}
+#series, #jobs{
+    height:85%;
+    width:22%;
+    position: relative;
+    background: #F8F9F9;
+    border:1px solid #f9f9f9;
+    float: left;
+    display: inline-block;
+    margin-left:1%;
+    margin-top:1%;
+    box-shadow: 5px 5px 3px #888888;
+    overflow-y:auto; 
+}
+#intro{
+    height:30%;
+    width:52%;
+    position: relative;
+    border:1px solid #f9f9f9;
+    float: left;
+    display: inline-block;
+    margin-left:1%;
+    margin-top:1%;
+    box-shadow: 5px 5px 3px #888888;
+	vertical-align:middle;
+}
+#image{
+    height:53%;
+    width:52%;
+    position: relative;
+    border:1px solid #f9f9f9;
+    float: left;
+    display: inline-block;
+    margin-left:1%;
+    margin-top:1%;
+    box-shadow: 5px 5px 3px #888888;
+	vertical-align:middle;
+}
+.jqueryzoom img{
+    position: absolute;
+    top:50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+}
+
+.ll {
+	width:100%;
+	height:18%;
+	float:left;
+	margin-bottom:1%;
+	position:relative;
+	overflow:hidden;
+	display:inline;
+	cursor:pointer;
+}
+.ll img {
+	width: 100%;
+	height: 100px;
+	object-fit: contain;
+}
+.ll a {
+	margin: 0;
+}
+.mask {
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*height: 100%;*/
+	width: 100%;
+	background: rgba(0,0,0,0.7);
+	color: #ffffff;
+	line-height: 110px;
+	text-align: center;
+	display: none;
+    border-radius: 4px;
+    font-size: 20px;
+	font-weight: bold;
+}
+#imgList li{
+	height:100px;
+	line-height:100px;
+	margin-right: 1%;
+}
+
+#imgList li img{
+	vertical-align: middle;
+}
+
+

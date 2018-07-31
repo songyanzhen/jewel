@@ -1,0 +1,103 @@
+#main {
+	min-width: 1000px;
+	position: absolute;
+	top: 15%;
+	width: 100%;
+	height: 85%;
+}
+#main > div {
+    vertical-align: top;
+}
+
+#photo {
+	display: inline-block;
+	padding-left: 4%;
+	height: 90%;
+	width: 50%;
+}
+/*图片列表*/
+ul {
+    min-width: 100%;
+    margin-top: 5px;
+    height: 75px;
+    overflow-y: hidden;
+    white-space:nowrap;
+    display: -webkit-box;
+    /*overflow-x: auto;*/
+    -webkit-overflow-scrolling:touch;
+}
+::-webkit-scrollbar {
+    display: none;
+}
+img {
+	object-fit: cover;
+}
+        /*ul li img { max-width: 80px; height: auto; }*/
+#imgList li img {
+	width: 64px;
+    height: 64px;
+}
+#imgList li{
+    display: inline-block;
+    margin-right: 5px;
+    list-style-type:none;
+	height: 64px;
+}
+
+
+#text {
+	display: inline-block;
+	margin-left: 4%;
+	height: 100%;
+	width: 41.5%;
+    /*text-align: left !important;*/
+    color: #333333;
+}
+
+#text h3 {
+    font-size: 18px;
+    padding-bottom: 15px;
+    margin: 0;
+}
+/*#text h4 {*/
+    /*font-size: 16px;*/
+    /*padding-bottom: 10px;*/
+    /*margin: 0;*/
+/*}*/
+#text p {
+    font-size: 12px;
+    line-height: 20px;
+    text-align:justify;
+    text-justify:inter-ideograph;
+}
+
+#footer {
+    min-width: 1000px;
+	position: absolute;
+	top: 90%;
+	width: 100%;
+	height: 10%;
+	text-align: center;
+}
+#footer p {
+	padding-top: 0.5%;
+    color: #666666;
+}
+.contact {
+    padding-top: 1%;
+	width: 50%;
+    margin-left: 25%;
+	text-align: center;
+}
+.con {
+	display: inline-block;
+    padding-left: 2%;
+    padding-right: 2%;
+	color: #666666 !important;
+}
+.con:visited {
+    color: #666666;
+}
+.con:hover, .con:active{
+	color: #333333 !important;
+}

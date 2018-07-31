@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>珠宝网站管理</title>
+    <link Rel="SHORTCUT ICON" href="http://download.easyicon.net/png/1202904/32/">
+	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="/static/css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
+    <link href="/static/css/smartMenu.css" rel="stylesheet" type="text/css"/>
+    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
+    <link href="/static/css/index.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/item.css" rel="stylesheet" type="text/css">
+	<link href="/static/css/smartMenu.css" rel="stylesheet" type="text/css"/>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="/static/js/jquery-accordion-menu.js" ></script>
+	<script type="text/javascript" src="/static/js/jquery-smartMenu.js" ></script>
+</head>
+<style>
+	/*外层盒子和里边图片的一点点样式*/
+	.jqueryzoom { position: relative; padding: 0; border: solid 1px #eaeaea; width: 100%; height:75%; overflow: hidden; display: inline-block; }
+	/*放大镜是基于图片大小自动生成的，每次都要把jqueryzoom中img的大小和jqueryzoom盒子大小设置为一样的，不然放大镜滑块有可能溢出*/
+	.jqueryzoom img {width: 100%; height:100%;}
+	#imgList li {float: left; margin-right: 5px; list-style-type:none;}
+	img {object-fit: contain;}
+	ul li img { width: 50px; height: 50px;}
+	.cloudzoom-gallery-active{opacity: .5}
+    .indexPics { width: 19%; height: 80px; margin-right: 1%; margin-top: 1%}
+    .selectPics { opacity: 0.6;}
+</style>
+<link href="/static/css/cloudzoom.css" rel="stylesheet"/>
+<script src="/static/js/cloudzoom.js"></script>
+
+<body>
+<div id="content">
+    <div id="leftMenu">
+        <div id="menuBar">
+            <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
+                <div class="jquery-accordion-menu-header" id="form">设置</div>
+                <ul id="demo-list">
+                	<li class="item active"><a href="/item/"><i class="fa fa-home "></i>查看当前情况</a></li>
+                    <li class="intro"><a href="/intro/"><i class="fa fa-id-card"></i>设置个人信息</a></li>
+                    <li class="logout"><a href="/logout/"><i class="fa fa-id-card"></i>注销</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="main">	
+		<div id="buttons">
+            <button type="button" class="btn btn-primary add fixIndex">设置轮播</button>
+			<button type="button" class="btn btn-primary add addSeries">添加系列</button>
+			<button type="button" class="btn btn-primary add addJob">添加作品</button>
+            <button type="button" class="btn btn-primary add fixSeriesSequence">修改系列顺序</button>
+            <button type="button" class="btn btn-primary add fixSequence">修改作品顺序</button>
+		</div>
+		<div id="series">
+			<!--<a href="#" class="list-group-item kind">系列1</a>
+			<a href="#" class="list-group-item kind">系列2</a>
+			<a href="#" class="list-group-item kind">系列3</a>
+			<a href="#" class="list-group-item kind">系列4</a>
+			<a href="#" class="list-group-item kind">系列5</a>-->
+		</div>
+		<div id="jobs"></div>
+		<div id="intro" style="text-align:left; padding: 1%;"></div>
+		<div id="image">
+            <div class="jqueryzoom"></div>
+			<ul id="imgList"></ul>
+        </div>
+    </div>
+    
+    <div>
+		<div class="modal fade" id="seriesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">添加系列</h4>
+						<div class="selector">
+							<div class="append">
+								<ul style="margin-left: 10%;">
+                                    <li>
+										<p style="margin-top: 2%; font-weight: bold;">系列图片</p>
+										<input name="photo" class="seriesPhoto" type="file" accept="image/*"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">名 称</p>
+										<input class="seriesName" type="text" placeholder="系列名称" style="width: 50%; margin: 0; height: 25px;"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">简 介</p>
+										<textarea name="introduction" class="seriesIntro" type="text" 
+										clos=",50" rows="5" warp="hard" placeholder="系列简介" style="width: 80%;"></textarea>
+									</li>
+                                    <li>
+										<p style="margin-top: 2%; font-weight: bold;">名 称（英文）</p>
+										<input class="seriesName_eng" type="text" placeholder="系列名称" style="width: 50%; margin: 0; height: 25px;"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">简 介（英文）</p>
+										<textarea name="introduction" class="seriesIntro_eng" type="text"
+										clos=",50" rows="5" warp="hard" placeholder="系列简介" style="width: 80%;"></textarea>
+									</li>
+								</ul>
+							</div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmSeries" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	<div>
+		<div class="modal fade" id="jobModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">添加作品</h4>
+					</div>
+					<div class="modal-body">
+						<div class="append">
+							<ul style="margin-left: 10%;">
+								<li>
+									<p style="margin-top: 2%; font-weight: bold;">系 列</p>
+									<select id="select" class="seriesSelect" style="width: 50%; margin: 0; height: 25px;">
+										<!--<option value="1">系列1</option>
+										<option value="2">系列2</option>
+										<option value="3">系列3</option>
+										<option value="4">系列4</option>
+										<option value="4">系列5</option>-->
+									</select>
+								</li>
+								<li>
+									<p id="addPhotoTag" style="margin-top: 2%; font-weight: bold;">图 片</p>
+									<input id="photo1" name="photo" class="photo" type="file" accept="image/*"
+										style="width: 50%; margin: 0; height: auto; display: inline;"/>
+									<!--<img style="margin-left: 10%; margin-bottom: 2%;" src="img/self.jpg" />
+									<button type="button" style="margin-left: 8%;" class="btn btn-primary deleteAddWork">删除</button>-->
+								</li>
+{#								<li>#}
+{#									<p style="margin-top: 2%; font-weight: bold;">简 介</p>#}
+{#									<textarea name="introduction" class="jobIntro" type="text" #}
+{#									clos=",50" rows="5" warp="hard" placeholder="作品简介" style="width: 80%;"></textarea>#}
+{#								</li>#}
+							</ul>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmJob" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	
+	   <div>
+		<div class="modal fade" id="fixSeries" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">修改系列</h4>
+						<div class="selector">
+							<div class="append seriesFix">
+								<ul style="margin-left: 10%;">
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">名 称</p>
+										<input class="fixSeriesName" type="text" placeholder="系列名称" style="width: 50%; margin: 0; height: 25px;"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">简 介</p>
+										<textarea name="fixIntroduction" class="fixSeriesIntro" type="text"
+										clos=",50" rows="5" warp="hard" placeholder="系列简介" style="width: 80%;"></textarea>
+									</li>
+                                    <li>
+										<p style="margin-top: 2%; font-weight: bold;">名 称（英文）</p>
+										<input class="fixSeriesName_eng" type="text" placeholder="系列名称" style="width: 50%; margin: 0; height: 25px;"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">简 介（英文）</p>
+										<textarea name="fixIntroduction" class="fixSeriesIntro_eng" type="text"
+										clos=",50" rows="5" warp="hard" placeholder="系列简介" style="width: 80%;"></textarea>
+									</li>
+								</ul>
+							</div>
+						</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmFixSeries" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	<div>
+		<div class="modal fade" id="fixJob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">修改作品</h4>
+					</div>
+					<div class="modal-body">
+						<div class="append">
+							<ul style="margin-left: 10%;">
+								<li>
+									<p style="margin-top: 2%; font-weight: bold;">系 列</p>
+									<select id="select" class="fixSeriesSelect" style="width: 50%; margin: 0; height: 25px;">
+										<!--<option value="1">系列1</option>
+										<option value="2">系列2</option>
+										<option value="3">系列3</option>
+										<option value="4">系列4</option>
+										<option value="4">系列5</option>-->
+									</select>
+								</li>
+								<li>
+									<p style="margin-top: 2%; font-weight: bold;">图 片</p>
+									<input id="photo" name="photo" class="fixPhoto" type="file" accept="image/*" 
+										placeholder="系列名称" style="width: 50%; margin: 0; height: 25px;"/>
+								</li>
+								<li>
+									<p style="margin-top: 2%; font-weight: bold;">简 介</p>
+									<textarea name="introduction" class="fixJobIntro" type="text" 
+									clos=",50" rows="5" warp="hard" placeholder="作品简介" style="width: 80%;"></textarea>
+								</li>
+							</ul>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmFixJob" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	
+	<div>
+		<div class="modal fade" id="delSeries" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">删除系列</h4>
+					</div>
+					<div class="modal-body">
+						<div class="append">
+							<li style="margin-left: 10%;">
+								<p style="margin-top: 2%; font-weight: bold;">确认删除该系列？（将删除该系列下所有作品）</p>
+							</li>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmDelSeries" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	<div>
+		<div class="modal fade" id="delJob" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">删除作品</h4>
+					</div>
+					<div class="modal-body">
+						<div class="append">
+							<li style="margin-left: 10%;">
+								<p style="margin-top: 2%; font-weight: bold;">确认删除该作品？</p>
+							</li>
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmDelJob" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+    <div>
+		<div class="modal fade" id="fixIndex" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
+						</button>
+						<h4 class="modal-title" id="myModalLabel">修改轮播</h4>
+					</div>
+					<div class="modal-body">
+						<div class="append indexFix">
+{#                            <li>#}
+{#                                <h5 style="font-weight: bold">系列名</h5>#}
+{#                                <img class="indexPics selectPics" src="/static/images/jewel1.jpg">#}
+{#                                <img class="indexPics" src="/static/images/wechat.png">#}
+{#                                <img class="indexPics selectPics" src="/static/images/self.jpg">#}
+{#                                <img class="indexPics selectPics" src="/static/images/jewel1.jpg">#}
+{#                                <img class="indexPics selectPics" src="/static/images/jewel1.jpg">#}
+{#                                <img class="indexPics" src="/static/images/jewel1.jpg">#}
+{#                            </li>#}
+						</div>
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+						<button type="button" class="btn btn-primary confirmFixIndex" data-dismiss="modal">确认</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal-dialog -->
+		</div><!-- /.modal -->
+	</div>
+	
+</div>
+</body>
+
+<script type="text/javascript">
+    jQuery(document).ready(function () {
+        jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+
+    });
+
+    $(function () {
+    	var flag1 = 0;
+        //顶部导航切换
+        $("#demo-list li").click(function () {
+            $("#demo-list li.active").removeClass("active")
+            $(this).addClass("active");
+        })  
+    })
+    
+    $(function () {
+        //顶部导航切换
+        $("#series a").click(function () {
+            $("#series a.active").removeClass("active")
+            $(this).addClass("active");
+        })  
+    })
+</script>
+<script src="/static/js/jquery-smartMenu.js"></script>
+<script type="text/javascript" src="/static/js/option.js"></script>
+
+</html>

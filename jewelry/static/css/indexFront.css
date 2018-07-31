@@ -1,0 +1,197 @@
+* {
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+	margin: 0;
+    padding: 0;
+    font-family: PingFang-SC-Medium, sans-serif;
+}
+body {
+    background-color: #f0f0f0;
+}
+
+html{
+    font-size: 10px;
+}
+
+@font-face {
+    font-family: PingFang-SC-Bold;
+    src: url("/static/css/fonts/PingFang-Bold.ttf");
+}
+
+@font-face {
+    font-family: PingFang-SC-Regular;
+    src: url("/static/css/fonts/PingFang-Regular.ttf");
+}
+
+@font-face {
+    font-family: PingFang-SC-ExtraLight;
+    src: url("/static/css/fonts/PingFang-ExtraLight.ttf");
+}
+
+@font-face {
+    font-family: PingFang-SC-Heavy;
+    src: url("/static/css/fonts/PingFang-Heavy.ttf");
+}
+
+@font-face {
+    font-family: PingFang-SC-Light;
+    src: url("/static/css/fonts/PingFang-Light.ttf");
+}
+
+@font-face {
+    font-family: PingFang-SC-Medium;
+    src: url("/static/css/fonts/PingFang-Medium.ttf");
+}
+#content {
+    width: 100%;
+    height: 100%;
+}
+body {
+	background: #ffffff;
+	padding: 0 20px;
+	margin: 0;
+	font-family: 'Open Sans', Arial, sans-serif;
+}
+.h2 {
+	text-align: center;
+	margin: 0.5%;
+	/*font-family: "engFont2";*/
+}
+#upMenu {
+    height: 16%;
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    overflow: hidden; 
+    background: #FFFFFF;
+}
+#main {
+	text-align: center;
+	top: 16%;
+	left: 0;
+	width: 100%;
+	position: absolute;
+	height: auto;
+	background-color: #FFFFFF;
+    bottom:0;
+    /*overflow-x: hidden;
+    overflow-y: hidden;*/
+}
+#footer {
+	padding-top: 0.1%;
+	font-size: 12px;
+	text-align: center;
+	background-color: #FFFFFF;
+	left: 0;
+	z-index:999; 
+	overflow: hidden; 
+	bottom: 0;
+	width:100%;
+	/*position: relative;*/
+	position: fixed;
+}
+
+.mynav ul {
+  	display: -webkit-box;
+  	display: -ms-flexbox;
+  	display: flex;
+  	-webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+  	-ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+  	list-style-type: none;
+  	padding: 0;
+}
+
+.mynav li:not(:last-child) {
+  	margin-right: 20px;
+}
+
+.mynav a {
+  	display: block;
+  	font-size: 20px;
+  	color: black;
+  	text-decoration: none;
+  	padding: 7px 15px;
+}
+
+.target {
+ 	position: absolute;
+  	border-bottom: 4px solid transparent;
+  	z-index: -1;
+  	-webkit-transform: translateX(-60px);
+    transform: translateX(-60px);
+}
+
+.mynav a,
+.target {
+  	-webkit-transition: all .35s ease-in-out;
+  	transition: all .35s ease-in-out;
+}
+/*.mynav ul li {
+	opacity: 0.25;
+}*/
+.now {
+	opacity: 1 !important;
+}
+
+#header {
+	width: 100%;
+	left: 0;
+	z-index:999;
+	overflow: hidden;
+	top: 0;
+	position: fixed;
+	background-color:rgba(255,255,255,0)
+}
+.userOperate {
+	margin-right: 1%;
+	margin-top: 0.5%;
+	color: black;
+	float: right;
+	text-decoration:none !important;
+}
+.changeLanguage {
+	margin-left: 1%;
+	margin-top: 0.5%;
+	color: black;
+	float: left;
+	text-decoration:none !important;
+}
+.opt {
+	float: left;
+	margin-left: 4%;
+	margin-top: 1%;
+	text-decoration:none !important;
+}
+.confirmLogin, .confirmRegister{
+	background: darkgrey;
+	border-color: darkgrey;
+}
+.confirmLogin:hover, .confirmRegister:hover{
+	background: gray;
+	border-color: gray;
+}
+.confirmLogin:active, .confirmRegister:active, .confirmLogin:focus, .confirmRegister:focus{
+	background: #30333A !important;
+	border-color: #30333A !important;
+}
+.btn {
+	border-radius: 0 !important;
+	outline: none !important;
+}
+.append ul {
+	margin-left: 15%;
+}
+.append ul li{
+	list-style-type: none;
+	margin-top: 10%;
+}
+.append ul li p {
+	font-weight: bold;
+	display: inline;
+	margin-right: 5%;
+}
