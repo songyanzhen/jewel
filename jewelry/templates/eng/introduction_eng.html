@@ -1,114 +1,267 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>YILAN JEWELRY</title>
-    <link Rel="SHORTCUT ICON" href="/static/images/logo.png">
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-    <link href="/static/css/new/style.css" rel="stylesheet" type="text/css">
-    <link href="/static/css/new/introduction.css" rel="stylesheet" type="text/css">
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
-	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="/static/js/jquery.rotate.min.js" ></script>
-    <script type="text/javascript" src="/static/js/new/menu.js" ></script>
-    <script type="text/javascript" src="/static/js/new/email.js" ></script>
+    <link rel="SHORTCUT ICON" href="/static/images/logo.png" />
+    <link
+      rel="stylesheet"
+      href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css"
+    />
+    <link
+      href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css"
+      rel="stylesheet"
+    />
+    <link href="/static/css/new/style.css" rel="stylesheet" type="text/css" />
+    <link
+      href="/static/css/new/introduction.css"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <script src="/static/js/jquery-2.0.0.min.js"></script>
+    <script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
+    <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script
+      type="text/javascript"
+      src="/static/js/jquery.rotate.min.js"
+    ></script>
+    <script type="text/javascript" src="/static/js/new/menu_eng.js"></script>
+    <script type="text/javascript" src="/static/js/new/email_eng.js"></script>
+    <script type="text/javascript" src="/static/js/new/intro_eng.js"></script>
     <script type="text/javascript" src="/static/js/uaredirect.js"></script>
-    <script type="text/javascript">uaredirect("/index_mob_eng/introduction_mob_eng");</script>
-
-</head>
-<body>
+    <script type="text/javascript">
+      uaredirect("/index_mob_eng/introduction_mob_eng");
+    </script>
+    <script>
+      if (/(iPad)/i.test(navigator.userAgent)) {
+        window.location.href = '/index_pad_eng/introduction_pad_eng"';
+      }
+    </script>
+  </head>
+  <body>
     <div id="content">
-        <div id="upMenu">
-            <div class="title"><a href="/eng/">YILAN JEWELRY</a></div>
-            <div class="openMenu"></div>
-            <div class="menu" style="display: none;">
-                <a class="engMenu" href="/index_eng/series_eng/">Collection</a>
-                <a class="engMenu" href="/index_eng/introduction_eng/">Designer</a>
-                <a href="/introduction/">中文</a>
-            </div>
-            <div class="search">
-                <a class="sea" href="javascript:void(0);" target="_blank"><i class="fa fa-search fa-lg"></i></a>
-            </div>
+      <div id="upMenu">
+        <div class="title">
+          <a href="/eng/"
+            ><img class="imgLogo" src="/static/images/icons/title.png"
+          /></a>
         </div>
-        <div id="main">
+        <div class="openMenu"></div>
+        <div class="menu" style="display: none;">
+          <a class="engMenu" href="/index_eng/series_eng/">Collection</a>
+          <a class="engMenu" href="/index_eng/introduction_eng/">Brand</a>
+          <a href="/introduction/">中文</a>
+        </div>
+        <div class="rightIcon">
+          <div class="searchBox" style="display: none;">
+            <input
+              class="searchText"
+              type="text"
+              placeholder="COLLECTION NAME"
+            />
+            <div class="results">
+              {# <a href="#">asd</a>#} 
+			  {# <a href="#">qwe</a>#} 
+			  {# <a href="#">try</a>#}
+            </div>
+          </div>
+          <a href="javascript:void(0);"><div class="search"></div></a>
+          <a href="https://shop326567492.taobao.com/"
+            ><div class="shop"></div
+          ></a>
+        </div>
+      </div>
+      <div id="main">
+        <div class="brand">
+          <p class="infotTitle">Brand Story</p>
+          <div id="story" class="text"></div>
+        </div>
+        <div class="founder">
+          <p class="infotTitle">The Founder of the Brand</p>
+          <div class="founderInfo">
             <div id="photo">
-                <img id="self" src="/static/images/{{ image }}">
+              <img id="self" src="/static/images/{{ image }}" />
             </div>
             <div id="text">
-                <h3>Designer</h3>
-                <div id="intro" class="text text1">
-                    <pre>{{ intro }}</pre>
-                </div>
-                <div class="centerdiv"></div>
-                <div id="exper" class="text text2">
-                    <pre>{{ exper }}</pre>
-                </div>
+              <div id="intro" class="text text1">
+                {# <pre>{{ intro }}</pre>#}
+              </div>
+              <div id="exper" class="text text2">
+                {# <pre>{{ exper }}</pre>#}
+              </div>
             </div>
+          </div>
         </div>
-{#        <div id="footer">#}
-{#            <div class="contact">#}
-{#                <a class="ins con" href="https://www.instagram.com/yilanliu_lyl/" target="_blank"><i class="fa fa-instagram"></i></a>#}
-{#                <a class="wechat con" href="#"><i class="fa fa-wechat"></i></a>#}
-{#                <a class="weibo con" href="https://weibo.com/u/5627347173" target="_blank"><i class="fa fa-weibo"></i></a>#}
-{#                <a class="email con" href="#"><i class="fa fa-envelope-o"></i></a>#}
-{#            </div>#}
-{#            <p>TEL：13020031705 Copyright © all reserved</p>#}
-{#        </div>#}
+        {# <div class="media">#}
+		{# <p class="infotTitle">媒体报道</p>#} 
+		{# <div class="mediaBox">#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# <img src="/static/images/icons/title.png" class="mediaImg" />#} 
+		{# </div>#}
+		{# </div>#}
+      </div>
+      {# <div id="footer">#} 
+	  {# <div class="contact">#}
+	  {# <a class="ins con" href="https://www.instagram.com/yilanjewellery/" target="_blank"><i class="fa fa-instagram"></i></a>#}
+	  {# <a class="wechat con" href="#"><i class="fa fa-wechat"></i></a>#}
+	  {# <a class="weibo con" href="https://weibo.com/u/5627347173" target="_blank"><i class="fa fa-weibo"></i></a>#}
+	  {# <a class="email con" href="#"><i class="fa fa-envelope-o"></i></a>#}
+	  {# </div>#}
+	  {# <p>YILAN JEWELRY</p>#}
+	  {# </div>#}
     </div>
     <div>
-        <div class="modal fade" id="wechatModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">微 信</h4>
-                        <div class="selector">
-                            <div class="append">
-                                <img style="margin-left: 12.5%" src="/static/images/wechat.png">
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+      <div
+        class="modal fade"
+        id="wechatModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
+              </button>
+              <h4 class="modal-title" id="myModalLabel">微 信</h4>
+              <div class="selector">
+                <div class="append">
+                  <img
+                    style="margin-left: 12.5%"
+                    src="/static/images/wechat.png"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
     </div>
     <div>
-        <div class="modal fade" id="emailModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×
-                        </button>
-                        <h4 class="modal-title" id="myModalLabel">邮 件</h4>
-                        <div class="selector">
-{#                            <div class="append">#}
-{#                                <img style="margin-left: 12.5%" src="/static/images/wechat.png">#}
-{#                            </div>#}
-                        </div>
-                    </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+      <div
+        class="modal fade"
+        id="emailModal"
+        tabindex="-1"
+        role="dialog"
+        aria-labelledby="myModalLabel"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button
+                type="button"
+                class="close"
+                data-dismiss="modal"
+                aria-hidden="true"
+              >
+                ×
+              </button>
+              <h4 class="modal-title" id="myModalLabel">Email</h4>
+              <div class="selector">
+                <div class="append email">
+                  <ul style="margin-left: 10%;">
+                    <li>
+                      <p style="margin-top: 2%; font-weight: bold;">Email</p>
+                      <input
+                        class="yourEmail"
+                        type="email"
+                        placeholder="Your Email"
+                        style="width: 80%; margin: 0; height: 25px;"
+                      />
+                    </li>
+                    <li>
+                      <p style="margin-top: 2%; font-weight: bold;">Title</p>
+                      <input
+                        class="title"
+                        type="text"
+                        placeholder="Email Title"
+                        style="width: 80%; margin: 0; height: 25px;"
+                      />
+                    </li>
+                    <li>
+                      <p style="margin-top: 2%; font-weight: bold;">Content</p>
+                      <textarea
+                        name="content"
+                        class="content"
+                        type="text"
+                        clos=",50"
+                        rows="5"
+                        warp="hard"
+                        placeholder="Email Content"
+                        style="width: 90%;"
+                      ></textarea>
+                    </li>
+                  </ul>
+                </div>
+                <div class="modal-footer" style="margin-right: 7%;">
+                  <button
+                    type="button"
+                    class="btn btn-default"
+                    data-dismiss="modal"
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary send"
+                    data-dismiss="modal"
+                  >
+                    Send
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
     </div>
-</body>
-<script>//导航栏效果
-    $('#main').append('<div id="footer">\n' +
+	<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278766764' style='display: none' %3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1278766764%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
+  </body>
+  <script>
+    //导航栏效果
+    $("#main").append(
+      '<div id="footer">\n' +
         '             <div class="contact">\n' +
-        '                <a class="ins con" href="https://www.instagram.com/yilanliu_lyl/" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>\n' +
+        '                <a class="ins con" href="https://www.instagram.com/yilanjewellery/" target="_blank"><i class="fa fa-instagram fa-lg"></i></a>\n' +
         '                <a class="wechat con" href="javascript:void(0);"><i class="fa fa-wechat fa-lg"></i></a>\n' +
         '                <a class="weibo con" href="https://weibo.com/u/5627347173" target="_blank"><i class="fa fa-weibo fa-lg"></i></a>\n' +
         '                <a class="email con" href="javascript:void(0);"><i class="fa fa-envelope-o fa-lg"></i></a>\n' +
-        '            </div>\n' +
-        '            <p>TEL：13020031705 Copyright © all reserved</p>\n' +
-        '        </div>');
-    $(".wechat").click(function(){
-        $('#wechatModal').modal('show');
+        "            </div>\n" +
+        "            <p>© YILAN JEWELRY&nbsp;京ICP备18044210号-1</p>\n" +
+        "        </div>"
+    );
+    $(".wechat").click(function() {
+      $("#wechatModal").modal("show");
     });
-    $(".email").click(function(){
-        $('#emailModal').modal('show');
+    $(".email").click(function() {
+      $("#emailModal").modal("show");
     });
-</script>
+    var bigHeight = $("#upMenu").height();
+    var titleHeight = $(".title").outerHeight(true);
+    var space = bigHeight - titleHeight;
+    space = (space - 20.6) / 2;
+    $(".openMenu").css("display", "inline-block");
+    $(".openMenu").css("margin-top", space);
+    $(".rightIcon").css("display", "block");
+    $(".rightIcon").css("top", titleHeight + space);
+  </script>
 </html>

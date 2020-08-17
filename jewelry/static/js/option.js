@@ -1,41 +1,90 @@
-﻿//var series = {"1":"系列1","2":"系列2","3":"系列3"};
-//var jobs = {"intro": "系列简介系列简介系列简介系列简介系列简介系列简介系列简介系列简介", jobs:["作品1","作品2","作品3","作品4"]};
-//var job={"image": "jewel1.jpg"};
-
-//function jobsAjax(seriesId) {
-//	var seriesId={id:seriesId};
-//	//alert(seriesId.id);
-//	$.ajax({
-//		type:'POST',
-//		data:JSON.stringify(seriesId),
-//		contentType: "application/json; charset=utf-8", 
-//		dataType:'json',
-//		url :'/sendOptionSeries/',
-//	});
-//}
-//function jobAjax(jobId) {
-//	var jobId={id:jobId};
-//	//alert(seriesId.id);
-//	$.ajax({
-//		type:'POST',
-//		data:JSON.stringify(jobId),
-//		contentType: "application/json; charset=utf-8", 
-//		dataType:'json',
-//		url :'/sendOptionJob/',
-//	});
-//}
-var delSeries;
+﻿var delSeries;
 var delWork;
 var optSeries;
 var optWork;
 var now;
+var flag;
+
+function resetWorkList(sid) {
+    var seriesPost = {id:sid};
+    $('#jobs').html('');
+    //$('#intro').html('');
+    $.get('/getOneSeries/', seriesPost, function (seriesjson) {//获取介绍
+        sss = seriesjson;
+        var intro = seriesjson;
+        $('#intro').html('');
+        $('#intro').append('<p>'+intro.seriesintro+'</p><br>');
+        $('#intro').append('<p>'+intro.seriesintro_eng+'</p>');
+    });
+    $.get('/getOptionWorks/', seriesPost,  function (jobsjson) {//获取作品
+        //series =  JSON.parse(json)
+        var jobs = jobsjson;
+        //$('#intro').append(jobs.intro);
+        for (var i in jobs) {
+            //alert(jobs[i].paths[0]);
+            $('#jobs').append('<div class="ll"><a href="#" class="thumbnail job" id="work' +
+                jobs[i].id +'" name="work' + i +'"><img src="http://img.yilanjewelry.com/' +
+                jobs[i].paths[0]+ '"/><div class=\"mask\">' +
+                jobs[i].workname + '</div></a></div>');
+        }
+        $(".job").mouseover(function(){
+            $(this).children('div').show();
+        })
+        $(".job").mouseout(function(){
+            $(this).children('div').hide();
+        })
+
+        $(function () {
+        //导航切换
+            $("#series a").click(function () {
+                $("#series a.active").removeClass("active")
+                $(this).addClass("active");
+            })
+        })
+
+        $(function () {
+            //导航切换
+            $("#jobs a").click(function () {
+                $("#jobs a.active").removeClass("active")
+                $(this).addClass("active");
+            })
+        })
+        $("#jobs a").smartMenu(jobMenu, {
+            name: "jobMenu"
+        });
+        $(".job").click(function(){
+            var imgId = $(this).attr("name");
+            var img = imgId.substring(4);
+            $('#imgList').html("");
+            $('.jqueryzoom').html("");
+            for(var i=0; i<jobs[img].paths.length; i++) {
+                if(i == 0) {
+                    $('.jqueryzoom').append('<img id="img" class="cloudzoom" src="http://img.yilanjewelry.com/' +
+                    jobs[img].paths[i] + '"data-cloudzoom="zoomSizeMode:\'lens\', startMagnification:1.2, lensWidth:180, lensHeight:180, zoomImage: \'http://img.yilanjewelry.com/'+
+                    jobs[img].paths[i] + '\', autoInside: 30, zoomPosition:12"/>');
+                    $('#imgList').append('<li><img class="cloudzoom-gallery cloudzoom-gallery-active" src="http://img.yilanjewelry.com/thumb_' +
+                    jobs[img].paths[i] + '" data-cloudzoom="useZoom:\'.cloudzoom\',image:\'http://img.yilanjewelry.com/' +
+                    jobs[img].paths[i] + '\',zoomImage:\'http://img.yilanjewelry.com/' +
+                    jobs[img].paths[i] + '\'"/></li>');
+                }
+                else {
+                    $('#imgList').append('<li><img class="cloudzoom-gallery" src="http://img.yilanjewelry.com/thumb_' +
+                    jobs[img].paths[i] + '" data-cloudzoom="useZoom:\'.cloudzoom\',image:\'http://img.yilanjewelry.com/' +
+                    jobs[img].paths[i] + '\',zoomImage:\'http://img.yilanjewelry.com/' +
+                    jobs[img].paths[i] + '\'"/></li>');
+                }
+            }
+            CloudZoom.quickStart();
+            //$('#image').append('<img src="'+ src + '" width="100%" />');
+        });
+    });
+}
 
 $(function () {
-	//getSeries();
-	//get
-	
+
     $.get('/getOptionSeries/', function (seriesjson) {//获取系列
 		//series =  JSON.parse(json)
+        sss = seriesjson;
 		var series = seriesjson;
 		// for(var s in series){//遍历json对象的每个key/value对,p为key
 		// 	$('#series').append('<a href="#" id="series'+ s + '" class="list-group-item kind">' + series[s] +'</a>');
@@ -46,10 +95,10 @@ $(function () {
 			//$('#series').append('<a href="#" id="series'+ series[s].id + '" class="list-group-item kind">' + series[s].seriesname +'</a>');
 
             $('#series').append('<div class="ll"><a href="#" class="thumbnail series" id="series' +
-                series[s].id +'" name="series' + s +'"><img src="/static/images/series_images/' +
+                series[s].id +'" name="series' + s +'"><img src="http://img.yilanjewelry.com/' +
                 series[s].seriespic+ '"/><div class=\"mask\">' +
                 series[s].seriesname + '</div></a></div>');
-			$('.seriesSelect').append('<option value="' + series[s].id + '">' + series[s].seriesname + '</option>')
+			$('.seriesSelect').append('<option class="grey-text text-darken-2" value="' + series[s].id + '">' + series[s].id + " " + series[s].seriesname + '</option>')
 			$('.fixSeriesSelect').append('<option value="' + series[s].id + '">' + series[s].seriesname + '</option>')
 
             $(".series").mouseover(function(){
@@ -60,6 +109,8 @@ $(function () {
             })
 			console.log(series[s].seriespic);
 		}
+    $('select').material_select();
+
 		$(function () {
         //导航切换
 	        $("#series a").click(function () {
@@ -75,77 +126,8 @@ $(function () {
 			var seriesName = $(this).attr("id");
 			var seriesId = seriesName.substring(6);
 			//jobsAjax(seriesId);
-			var seriesPost = {id:seriesId};
-			$('#jobs').html('');
-			//$('#intro').html('');
-            $.get('/getOneSeries/', seriesPost, function (seriesjson) {//获取介绍
-            	var intro = seriesjson;
-            	$('#intro').html('');
-                $('#intro').append(intro.seriesintro);
-            })
-			//get
-			$.get('/getOptionWorks/', seriesPost,  function (jobsjson) {//获取作品
-				//series =  JSON.parse(json)
-				var jobs = jobsjson;
-				//$('#intro').append(jobs.intro);
-				for (var i in jobs) {
-					//alert(jobs[i].paths[0]);
-					$('#jobs').append('<div class="ll"><a href="#" class="thumbnail job" id="work' +
-						jobs[i].id +'" name="work' + i +'"><img src="/static/images/' +
-						jobs[i].paths[0]+ '"/><div class=\"mask\">' +
-						jobs[i].workname + '</div></a></div>');
-				}
-				$(".job").mouseover(function(){
-					$(this).children('div').show();
-				})
-				$(".job").mouseout(function(){
-					$(this).children('div').hide();
-				})
-
-				$(function () {
-		        //导航切换
-			        $("#series a").click(function () {
-			            $("#series a.active").removeClass("active")
-			            $(this).addClass("active");
-			        })
-			    })
-	
-				$(function () {
-			        //导航切换
-			        $("#jobs a").click(function () {
-			            $("#jobs a.active").removeClass("active")
-			            $(this).addClass("active");
-			        })
-			    })
-				$("#jobs a").smartMenu(jobMenu, {
-					name: "jobMenu"
-				});
-				$(".job").click(function(){
-					var imgId = $(this).attr("name");
-					var img = imgId.substring(4);
-					$('#imgList').html("");
-					$('.jqueryzoom').html("");
-					for(var i=0; i<jobs[img].paths.length; i++) {
-						if(i == 0) {
-							$('.jqueryzoom').append('<img id="img" class="cloudzoom" src="/static/images/' +
-							jobs[img].paths[i] + '"data-cloudzoom="zoomSizeMode:\'lens\', startMagnification:1.2, lensWidth:180, lensHeight:180, zoomImage: \'/static/images/'+
-							jobs[img].paths[i] + '\', autoInside: 30, zoomPosition:12"/>');
-							$('#imgList').append('<li><img class="cloudzoom-gallery cloudzoom-gallery-active" src="/static/images/' +
-							jobs[img].paths[i] + '" data-cloudzoom="useZoom:\'.cloudzoom\',image:\'/static/images/' +
-							jobs[img].paths[i] + '\',zoomImage:\'/static/images/' +
-							jobs[img].paths[i] + '\'"/></li>');
-						}
-						else {
-							$('#imgList').append('<li><img class="cloudzoom-gallery" src="/static/images/' +
-							jobs[img].paths[i] + '" data-cloudzoom="useZoom:\'.cloudzoom\',image:\'/static/images/' +
-							jobs[img].paths[i] + '\',zoomImage:\'/static/images/' +
-							jobs[img].paths[i] + '\'"/></li>');
-						}
-					}
-					CloudZoom.quickStart();
-					//$('#image').append('<img src="'+ src + '" width="100%" />');
-				});
-			});
+            flag = seriesId;
+            resetWorkList(flag);
 		});
     });
 })
@@ -158,7 +140,8 @@ function addSeriesAjax()
     Data.append("seriesName_eng", $(".seriesName_eng").val());
     Data.append("seriesIntro_eng", $(".seriesIntro_eng").val());
     Data.append("file", $('.seriesPhoto')[0].files[0]);
-	
+	Data.append("rate", $('.seriesRate').val());
+
     $.ajax({  
          url: '/addSeries/' ,
          type: 'post',  
@@ -168,7 +151,8 @@ function addSeriesAjax()
          contentType: false,
          async: false
     }).done(function(res) {
-    	alert("添加系列成功");
+        if(res == 1)
+    	    alert("添加系列成功");
         
     }).fail(function(res) {
         
@@ -176,19 +160,29 @@ function addSeriesAjax()
 } 
 function addWorkAjax()
 {
-	var allInput = $('#addPhotoTag').nextAll('input');
+	// var allInput = $('#addPhotoTag').nextAll('input');
+    var allInput = $('.jobPhoto');
+    console.log(allInput.length)
 	var i = 1;
 	var name;
     var Data = new FormData();
-    Data.append("seriesSelect", $(".seriesSelect").val());
+
+    var seriesId = $(".seriesSelect ul .active span").html().split(' ')[0]
+    var options = $('.seriesSelect option');
+
+    console.log(seriesId)
+    Data.append("seriesSelect", seriesId);
     // Data.append("jobIntro", $(".jobIntro").val());
+    console.log($(".seriesSelect ul .active span").html())
     allInput.each(function(){
 	    if($(this).val() != "") {
 	    	name = "photo" + i;
 	    	Data.append(name, $(this)[0].files[0]);
 	    	i++
 	    }
+	    // console.log($(this)[0].files[0])
 	});
+
     $.ajax({
          url: '/addWork/' ,
          type: 'post',
@@ -198,8 +192,8 @@ function addWorkAjax()
          contentType: false,
          async: false
     }).done(function(res) {
+        if(res == 1 )
     	alert("添加作品成功");
-
     }).fail(function(res) {
 
     });
@@ -236,7 +230,7 @@ function delWorkAjax(workId) {
          async: false
     }).done(function(res) {
     	alert("删除作品成功");
-
+		resetWorkList(flag);
     }).fail(function(res) {
 
     });
@@ -251,7 +245,8 @@ function fixSeriesAjax(series) {
         contentType: false,
         async: false
     }).done(function(res) {
-    	alert("修改系列成功");
+        if(res == 1)
+    	    alert("修改系列成功");
     }).fail(function(res) {
 
     });
@@ -286,8 +281,9 @@ var seriesMenu = [
                 $('.fixSeriesIntro').val(series.seriesintro);
                 $('.fixSeriesName_eng').val(series.seriesname_eng);
                 $('.fixSeriesIntro_eng').val(series.seriesintro_eng);
+                // $('.fixSeriesRate').val(series.rate);
             })
-			$('#fixSeries').modal('show');
+			$('#fixSeries').modal('open');
 		}
 	},
 	{
@@ -296,16 +292,32 @@ var seriesMenu = [
 			now = $(this);
 			delSeries = $(this).attr('id').substring(6);
 			//alert(delSeries)
-			$('#delSeries').modal('show');
+			$('#delSeries').modal('open');
 		}
 	},{
 		text: "上移",
 		func: function() {
 			var parent = $(this).parent();
 			var prev = parent.prev();
-			//alert(prev.html());
 			prev.before(parent);
-			//parent.remove();
+			var seq = {};
+			var i = 1;
+			// id key seq value;
+			var seqId;
+			$(".series").each(function(){
+				//alert($(this).attr("id"))
+				seqId = $(this).attr("id").substring(6);
+
+				seq[seqId] = i;
+				i++;
+			});
+			$.ajax({
+				type:'POST',
+				data:JSON.stringify(seq),
+				contentType: "application/json; charset=utf-8",
+				dataType:'json',
+				url :'/seriesSequence/',
+			});
 		}
 	},
 	{
@@ -313,8 +325,25 @@ var seriesMenu = [
 		func: function() {
 			var parent = $(this).parent();
 			var next = parent.next();
-			//alert(next.html());
 			next.after(parent);
+			var seq = {};
+			var i = 1;
+			// id key seq value;
+			var seqId;
+			$(".series").each(function(){
+				//alert($(this).attr("id"))
+				seqId = $(this).attr("id").substring(6);
+
+				seq[seqId] = i;
+				i++;
+			});
+			$.ajax({
+				type:'POST',
+				data:JSON.stringify(seq),
+				contentType: "application/json; charset=utf-8",
+				dataType:'json',
+				url :'/seriesSequence/',
+			});
 		}
 	}],
 ];
@@ -334,7 +363,7 @@ var jobMenu = [
 			now = $(this);
 			var workName = $(this).attr("id");
 			delWork = workName.substring(4);
-			$('#delJob').modal('show');
+			$('#delJob').modal('open');
 		}
 	},{
 		text: "上移",
@@ -344,6 +373,24 @@ var jobMenu = [
 			//alert(prev.html());
 			prev.before(parent);
 			//parent.remove();
+			var seq = {};
+			var i = 1;
+			// id key seq value;
+			var seqId;
+			$(".job").each(function(){
+				//alert($(this).attr("id"))
+				seqId = $(this).attr("id").substring(4);
+
+				seq[seqId] = i;
+				i++;
+			});
+			$.ajax({
+				type:'POST',
+				data:JSON.stringify(seq),
+				contentType: "application/json; charset=utf-8",
+				dataType:'json',
+				url :'/workSequence/',
+			});
 		}
 	},
 	{
@@ -353,6 +400,24 @@ var jobMenu = [
 			var next = parent.next();
 			//alert(next.html());
 			next.after(parent);
+			var seq = {};
+			var i = 1;
+			// id key seq value;
+			var seqId;
+			$(".job").each(function(){
+				//alert($(this).attr("id"))
+				seqId = $(this).attr("id").substring(4);
+
+				seq[seqId] = i;
+				i++;
+			});
+			$.ajax({
+				type:'POST',
+				data:JSON.stringify(seq),
+				contentType: "application/json; charset=utf-8",
+				dataType:'json',
+				url :'/workSequence/',
+			});
 		}
 	}],
 ];
@@ -368,14 +433,14 @@ $(".fixIndex").click(function(){
         }
     });
 
-    $.get('/getAllPics/', function (picsjson) {//获取介绍
+    $.get('/getAllPics/', function (picsjson) {//修改轮播
 				//series =  JSON.parse(json)
 		var pic = picsjson;
 		var len =pic.length;
 		$('.indexFix').html('');
 		for(var i=0; i<len; i++) {
-			$('.indexFix').append('<li><h5 class="indexSeries' + i +
-				'" style="font-weight: bold">' + pic[i].seriesName + '</h5></li>');
+			$('.indexFix').append('<li style="list-style: none"><p class="indexSeries' + i +
+				'" style="font-weight: bold">' + pic[i].seriesName + '</p></li>');
 		}
 		for(var i=0; i<len; i++) {
 		    var picLen = pic[i].picIds.length
@@ -383,19 +448,19 @@ $(".fixIndex").click(function(){
 		    for(var j=0; j<picLen; j++) {
 		        if(nowPic.broadcast[j]) {
                     $('.indexSeries' + i).after('<a href="#" class="se"><img id="indexPic' + nowPic.picIds[j] +
-                    '" class="indexPics selectPics" src="/static/images/' + nowPic.picpaths[j] +
+                    '" class="indexPics selectPics" src="http://img.yilanjewelry.com/thumb_' + nowPic.picpaths[j] +
                     '"></a>');
                 }
                 else {
 		            $('.indexSeries' + i).after('<a href="#" class="se"><img id="indexPic' + nowPic.picIds[j] +
-                    '" class="indexPics" src="/static/images/' + nowPic.picpaths[j] +
+                    '" class="indexPics" src="http://img.yilanjewelry.com/thumb_' + nowPic.picpaths[j] +
                     '"></a>');
                 }
             }
 		}
     })
 // getAllPics
-	$('#fixIndex').modal('show');
+    $('#fixIndex').modal('open');
 });
 
 $(".confirmSeries").click(function(){
@@ -409,24 +474,41 @@ $(".confirmSeries").click(function(){
 
 $(".confirmJob").click(function(){
 	addWorkAjax();
-	location.reload();
+	//location.reload();
+    flag = $(".seriesSelect ul .active span").html().split(' ')[0];
+    if(flag) {
+        resetWorkList(flag);
+        // $("#addWorkPhoto").html('<p id="addPhotoTag" style="margin-top: 2%; font-weight: bold;">图 片</p>\n' +
+        //     '\t\t\t\t\t\t\t\t\t<input id="photo1" name="photo" class="photo" type="file" accept="image/*"\n' +
+        //     '\t\t\t\t\t\t\t\t\t\tstyle="width: 50%; margin: 0; height: auto; display: inline;"/>');
+        $("#addWorkPhoto").html(`<div class="uploadPhoto file-field input-field">
+                          <div class="waves-effect waves-light btn grey darken-2">
+                            <span>图 片</span>
+                            <input id="photo1" name="photo" class="photo jobPhoto" type="file" accept="image/*">
+                          </div>
+                          <div class="file-path-wrapper">
+                            <input class="file-path validate" type="text">
+                          </div>
+                        </div>`);
+        $(".photo").change(function(){
+			upWorkPhoto($(this));
+		});
+    }
 });
 $(".addSeries").click(function(){
-	$('#seriesModal').modal('show');
+	$('#seriesModal').modal('open');
 });
 $(".addJob").click(function(){
-	$('#jobModal').modal('show');
+	$('#jobModal').modal('open');
 });
 
 $(".confirmDelSeries").click(function(){
 	delSeriesAjax(delSeries);
 	now.remove();
-	//location.reload();
+	location.reload();
 });
 $(".confirmDelJob").click(function(){
 	delWorkAjax(delWork);
-	now.remove();
-	location.reload();
 });
 $(".confirmFixSeries").click(function(){
 	var seriesid = optSeries.substring(6);
@@ -434,6 +516,7 @@ $(".confirmFixSeries").click(function(){
 	var intro = $('.fixSeriesIntro').val();
 	var name_eng = $('.fixSeriesName_eng').val();
 	var intro_eng = $('.fixSeriesIntro_eng').val();
+	var rate = $('.fixSerieRate').val();
 	// var fixseries = {'id':seriesid, 'seriesname':name, 'seriesintro':intro}
 	var Data = new FormData();
 	Data.append("id", seriesid);
@@ -441,8 +524,10 @@ $(".confirmFixSeries").click(function(){
     Data.append("seriesintro", intro);
     Data.append("seriesname_eng", name_eng);
     Data.append("seriesintro_eng", intro_eng);
+    Data.append("file", $('.fixSeriesPhoto')[0].files[0]);
+    Data.append("rate", rate);
 	fixSeriesAjax(Data);
-	//location.reload();
+	location.reload();
 });
 
 $(".confirmFixIndex").click(function(){
@@ -463,50 +548,6 @@ $(".confirmFixIndex").click(function(){
 	location.reload();
 });
 
-
-$(".fixSequence").click(function(){
-	var seq = {};
-	var i = 1;
-	// id key seq value;
-	var seqId;
-	$(".job").each(function(){
-		//alert($(this).attr("id"))
-		seqId = $(this).attr("id").substring(4);
-
-		seq[seqId] = i;
-		i++;
-	});
-	$.ajax({
-		type:'POST',
-		data:JSON.stringify(seq),
-		contentType: "application/json; charset=utf-8",
-		dataType:'json',
-		url :'/workSequence/',
-	});
-	location.reload();
-});
-//系列顺序
-$(".fixSeriesSequence").click(function(){
-	var seq = {};
-	var i = 1;
-	// id key seq value;
-	var seqId;
-	$(".series").each(function(){
-		//alert($(this).attr("id"))
-		seqId = $(this).attr("id").substring(6);
-
-		seq[seqId] = i;
-		i++;
-	});
-	$.ajax({
-		type:'POST',
-		data:JSON.stringify(seq),
-		contentType: "application/json; charset=utf-8",
-		dataType:'json',
-		url :'/seriesSequence/',
-	});
-	location.reload();
-});
 function getFileUrl(sourceId) {
     var url;
     if (navigator.userAgent.indexOf("MSIE")>=1) { // IE
@@ -535,10 +576,51 @@ function upWorkPhoto(upPhoto) {
 		var i = parseInt(upPhoto.attr("id").substr(5));
 		var j = i + 1;
 		var src = upPhoto.val();
-		upPhoto.after('<img id="img' + i + '" style="margin-left: 10%; margin-bottom: 2%;" src="" />' +
-		'<button type="button" style="margin-left: 8%;" class="btn btn-primary deleteAddWork">删除</button>' +
-		'<input id="photo' + j + '" name="photo" class="photo" type="file" accept="image/*"' +
-		'style="width: 50%; margin: 0; height: auto; display: inline;"/>');
+		// upPhoto.after('<img id="img' + i + '" style="margin-left: 10%; margin-bottom: 2%;" src="" />' +
+		// '<button type="button" style="margin-left: 8%;" class="btn btn-primary deleteAddWork">删除</button>' +
+		// '<input id="photo' + j + '" name="photo" class="photo" type="file" accept="image/*"' +
+		// 'style="width: 50%; margin: 0; height: auto; display: inline;"/>');
+		upPhoto.parent().parent().after(`
+            <img id="img${i}" style="height: 100px; width: 200px; object-fit: cover;" src="" />
+            <button type="button" style="float: right" class="waves-effect waves-light btn-flat deleteAddWork">删除</button>
+            
+             <div class="uploadPhoto file-field input-field">
+              <div class="waves-effect waves-light btn grey darken-2">
+                <span>图 片</span>
+                <input id="photo${j}" name="photo" class="photo jobPhoto" type="file" accept="image/*">
+              </div>
+              <div class="file-path-wrapper">
+                <input class="file-path validate" type="text">
+              </div>
+            </div>
+        `);
+
+        // upPhoto.parent().parent().after(`
+        //     <div class="uploadPhoto file-field input-field">
+        //       <div class="waves-effect waves-light btn grey darken-2">
+        //         <span>图 片</span>
+        //         <input id="photo${j}" name="photo" class="photo" type="file" accept="image/*">
+        //       </div>
+        //       <div class="file-path-wrapper">
+        //         <input class="file-path validate" type="text">
+        //       </div>
+        //     </div>
+        // `);
+
+
+        // <div class="uploadPhoto file-field input-field">
+        //                   <div class="waves-effect waves-light btn grey darken-2">
+        //                     <span>图 片</span>
+        //                     <input id="photo${j}" name="photo" class="photo" type="file" accept="image/*">
+        //                   </div>
+        //                   <div class="file-path-wrapper">
+        //                     <input class="file-path validate" type="text">
+        //                   </div>
+        //                 </div>
+		// upPhoto.after('<img id="img' + i + '" style="margin-left: 10%; margin-bottom: 2%;" src="" />' +
+		// '<button type="button" style="margin-left: 8%;" class="btn btn-primary deleteAddWork">删除</button>' +
+		// '<input id="photo' + j + '" name="photo" class="photo" type="file" accept="image/*"' +
+		// 'style="width: 50%; margin: 0; height: auto; display: inline;"/>');
 		//alert(i)
 		preImg(upPhoto.attr("id"), "img" + i);
 
@@ -557,6 +639,16 @@ function upWorkPhoto(upPhoto) {
 
 $(".photo").change(function(){
 	upWorkPhoto($(this));
+});
+
+$(".confirmSubmit").click(function () {
+	$.get('/purgePreview/', function (code) {//获取介绍
+		if (code == 1) {
+		    alert('上线成功');
+        } else {
+		    alert('上线失败');
+        }
+	})
 });
 
 

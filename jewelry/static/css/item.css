@@ -1,46 +1,71 @@
+/*box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);*/
+
+
 #buttons{
-    height:12%;
-    width:98%;
-    background: #F1F1F1;
-    margin-left: 1%;
-    box-shadow: 5px 5px 3px #888888;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height:60px;
+    width:100%;
+    background: #fff;
+    box-shadow: 0 0 0 0 rgba(0,0,0,0.14), 0 0 0 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.16);
 }
-#series, #jobs{
-    height:85%;
-    width:22%;
-    position: relative;
-    background: #F8F9F9;
-    border:1px solid #f9f9f9;
-    float: left;
-    display: inline-block;
-    margin-left:1%;
-    margin-top:1%;
-    box-shadow: 5px 5px 3px #888888;
-    overflow-y:auto; 
+
+.add {
+    padding: 0 12px;
+    margin-right: 14px;
+}
+
+#settingContent {
+    display: flex;
+    flex-direction: column;
+}
+
+#content {
+    display: flex;
+    padding: 10px;
+}
+#series, #jobs {
+    background-color: #fff;
+    width: 260px;
+    height: calc(100vh - 80px);
+    overflow-y: auto;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    margin-right: 10px;
+    border-radius: 4px;
+}
+#jobInfo {
+    width:  calc(100vw - 860px);
+    display: flex;
+    flex-direction: column;
 }
 #intro{
-    height:30%;
-    width:52%;
-    position: relative;
-    border:1px solid #f9f9f9;
-    float: left;
-    display: inline-block;
-    margin-left:1%;
-    margin-top:1%;
-    box-shadow: 5px 5px 3px #888888;
-	vertical-align:middle;
+    height: calc((100vh - 90px) /2);
+    /*width:100%;*/
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    /*position: relative;*/
+	/*vertical-align:middle;*/
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding: 6px;
+    border-radius: 4px;
 }
 #image{
-    height:53%;
-    width:52%;
-    position: relative;
-    border:1px solid #f9f9f9;
-    float: left;
-    display: inline-block;
-    margin-left:1%;
-    margin-top:1%;
-    box-shadow: 5px 5px 3px #888888;
-	vertical-align:middle;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: calc((100vh - 90px) /2);
+    /*width:100%;*/
+    background-color: #fff;
+    box-shadow: 0 2px 2px 0 rgba(0,0,0,0.14), 0 1px 5px 0 rgba(0,0,0,0.12), 0 3px 1px -2px rgba(0,0,0,0.2);
+    border-radius: 4px;
+    /*position: relative;*/
+	/*vertical-align:middle;*/
+}
+.jqueryzoom {
+    height: calc(100% - 130px);
+    border-color: #f8f8f8 !important;
 }
 .jqueryzoom img{
     position: absolute;
@@ -51,9 +76,9 @@
 
 .ll {
 	width:100%;
-	height:18%;
+	height:140px;
 	float:left;
-	margin-bottom:1%;
+	margin-bottom:8px;
 	position:relative;
 	overflow:hidden;
 	display:inline;
@@ -61,8 +86,8 @@
 }
 .ll img {
 	width: 100%;
-	height: 100px;
-	object-fit: contain;
+	height: 140px;
+	object-fit: cover;
 }
 .ll a {
 	margin: 0;
@@ -73,23 +98,44 @@
 	left: 0;
 	/*height: 100%;*/
 	width: 100%;
-	background: rgba(0,0,0,0.7);
+	background: rgba(0,0,0,0.6);
 	color: #ffffff;
-	line-height: 110px;
+	line-height: 140px;
 	text-align: center;
 	display: none;
     border-radius: 4px;
     font-size: 20px;
 	font-weight: bold;
 }
+#imgList {
+    display: flex;
+    justify-content: center;
+    padding: 0 10px;
+    border-top: 1px solid #f8f8f8;
+}
+
 #imgList li{
 	height:100px;
 	line-height:100px;
-	margin-right: 1%;
+	margin-right: 4px !important;
+    margin-left: 4px !important;
+    margin-top: 8px !important;
 }
 
 #imgList li img{
-	vertical-align: middle;
+	/*vertical-align: middle;*/
+    width: 80px !important;
+    height: 80px !important;
+    object-fit: cover;
 }
+.append {
+    margin-top: 20px;
+}
+
+.seriesSelect ul li span {
+    color: #616161 !important;
+    font-size: 14px !important;
+}
+
 
 

@@ -10,6 +10,7 @@ function loginAjax(user) {
 			//alert(data);
             if(data == 9998) {
 			    alert("用户未激活！");
+
                 return false;
             }
             else if(data == 9999) {

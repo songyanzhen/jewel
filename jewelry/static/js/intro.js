@@ -1,16 +1,24 @@
 var self={"intro":"个人简历","exper":"获奖经济"};
 
-$(function () {
-	//get
-	// $.get('/getOptionIntro/', function (selfjson) {//获取介绍
-	// 			//series =  JSON.parse(json)
-	// 	var self = selfjson;
-	// 	$('.introduction').attr('placeholder',self.intro);
-	// 	$('.exper').attr('placeholder',self.exper);
-    // })
-	
-})
-
+function getFileUrl(sourceId) {
+    var url;
+    if (navigator.userAgent.indexOf("MSIE")>=1) { // IE
+        url = document.getElementById(sourceId).value;
+    } else if(navigator.userAgent.indexOf("Firefox")>0) { // Firefox
+        url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    } else if(navigator.userAgent.indexOf("Chrome")>0) { // Chrome
+        url = window.URL.createObjectURL(document.getElementById(sourceId).files.item(0));
+    }
+    return url;
+}
+function preImg(sourceId, targetId) {
+    var url = getFileUrl(sourceId);
+    var imgPre = document.getElementById(targetId);
+    imgPre.src = url;
+}
+$(".photo").change(function(){
+	preImg('photo', 'previewImg');
+});
 function introAjax()
 {   
     var Data = new FormData();
@@ -35,10 +43,6 @@ function introAjax()
     });
 } 
 $(".confirmIntro").click(function(){
-    if (!$('#photo').val()) {
-		alert("请选择上传照片");
-		$('#photo').focus();
-		return false;
-	}
 	introAjax();
+	location.reload();
 });

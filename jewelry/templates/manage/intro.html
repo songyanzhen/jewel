@@ -2,61 +2,70 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>珠宝网站管理</title>
-    <link Rel="SHORTCUT ICON" href="http://download.easyicon.net/png/1202904/32/">
-	<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>YILAN JEWERY CMS</title>
+    <link Rel="SHORTCUT ICON" href="/static/images/logo.png">
     <link href="/static/css/jquery-accordion-menu.css" rel="stylesheet" type="text/css"/>
-    <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
-    <link href="/static/css/index.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="/static/css/materialize.min.css"  media="screen,projection"/>
+    <link href="/static/css/manageIndex.css" rel="stylesheet" type="text/css">
     <link href="/static/css/intro.css" rel="stylesheet" type="text/css">
 	<link href="/static/css/smartMenu.css" rel="stylesheet" type="text/css"/>
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/static/js/jquery-2.0.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/materialize.min.js"></script>
 	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
-	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery-accordion-menu.js" ></script>
 </head>
 <body>
-<div id="content">
+<div id="main">
     <div id="leftMenu">
-        <div id="menuBar">
-            <div id="jquery-accordion-menu" class="jquery-accordion-menu black">
-                <div class="jquery-accordion-menu-header" id="form">设置</div>
-                <ul id="demo-list">
-                	<li class="item"><a href="/item/"><i class="fa fa-home "></i>查看当前情况</a></li>
-                    <li class="intro active"><a href="/intro"><i class="fa fa-id-card"></i>设置个人信息</a></li>
-                    <li class="logout"><a href="/logout/"><i class="fa fa-id-card"></i>注销</a></li>
-                </ul>
-            </div>
-        </div>
+        <ul id="nav-mobile" class="side-nav fixed">
+            <div class="menuTitle">YILAN JEWELRY</div>
+            <li><a class="waves-effect" href="/item/"><i class="material-icons">favorite_border</i>展示作品</a></li>
+            <li><a class="waves-effect navActive" href="/intro"><i class="material-icons">perm_identity</i>个人信息</a></li>
+            <li><a class="waves-effect" href="/brand/"><i class="material-icons">tab</i>品牌信息</a></li>
+            <li><a class="waves-effect" href="/preview/"><i class="material-icons">airplay</i>预览</a></li>
+            <li><a class="waves-effect" href="/logout/"><i class="material-icons">reply</i>注销</a></li>
+        </ul>
+        <a href="#" data-activates="slide-out" class="button-collapse" style="display: none"><i class="material-icons">menu</i></a>
     </div>
 
-    <div id="main">	
+    <div id="settingContent">
 		<div class="introinfo">
-			<ul>
-				<form id="intro" role="form" method="POST" action="/intro/" enctype="multipart/form-data">
-					<p>设计师照片</p> 
-					<li>
-						<input id="photo" name="photo" class="photo" type="file" accept="image/*"/>
-					</li>
-					<p>设计师介绍</p> 
-					<li>
-						<textarea name="introduction" class="introduction" type="text" clos=",50" rows="3" warp="hard" placeholder="原内容">{{ intro }}</textarea>
-					</li>
-					<p>获奖参展经历</p> 
-					<li>
-						<textarea name="exper" class="exper" type="text" clos=",50" rows="3" warp="hard" placeholder="原内容">{{ exper }}</textarea>
-					</li>
-                    <p>设计师介绍（英文）</p>
-					<li>
-						<textarea name="introduction" class="introduction_eng" type="text" clos=",50" rows="3" warp="hard" placeholder="原内容">{{ intro_eng }}</textarea>
-					</li>
-					<p>获奖参展经历（英文）</p>
-					<li>
-						<textarea name="exper" class="exper_eng" type="text" clos=",50" rows="3" warp="hard" placeholder="原内容">{{ exper_eng }}</textarea>
-					</li>
-				</form>
-				<li><a id="comfirm"><input class="confirmIntro btn btn-primary btn-lg" style="width: 40%;" type="button" value="确认修改" /></a></li>
-			</ul>
+            <form id="intro" role="form" method="POST" action="/intro/" enctype="multipart/form-data">
+                <div class="loadPhoto">
+                    <div class="uploadPhoto file-field input-field">
+                      <div class="waves-effect waves-light btn grey darken-2">
+                        <span>设计师照片</span>
+                        <input id="photo" name="photo" class="photo" type="file" accept="image/*">
+                      </div>
+                      <div class="file-path-wrapper">
+                        <input class="file-path validate" type="text">
+                      </div>
+                    </div>
+                    <img id="previewImg" class="previewImg" src="/static/images/{{ image }}" />
+                </div>
+
+                <div class="input-field">
+                    <textarea id="introduction_cn" name="introduction" class="introduction materialize-textarea" type="text">{{ intro }}</textarea>
+                    <label for="introduction_cn">设计师介绍</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="exper_cn" name="exper" class="exper materialize-textarea" type="text">{{ exper }}</textarea>
+                    <label for="exper_cn">获奖参展经历</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="introduction_en" name="introduction_eng" class="introduction_eng materialize-textarea" type="text">{{ intro_eng }}</textarea>
+                    <label for="introduction_eng">Introduction</label>
+                </div>
+
+                <div class="input-field">
+                    <textarea id="exper_eng" name="exper_eng" class="exper_eng materialize-textarea" type="text">{{ exper_eng }}</textarea>
+                    <label for="exper_eng">Experience</label>
+                </div>
+            </form>
+            <a class="confirmIntro waves-effect waves-light btn grey darken-2">确 认</a>
 		</div>
     </div>
 </div>
@@ -64,18 +73,10 @@
 
 <script type="text/javascript">
     jQuery(document).ready(function () {
-        jQuery("#jquery-accordion-menu").jqueryAccordionMenu();
+         $(".button-collapse").sideNav();
+        {#jQuery("#jquery-accordion-menu").jqueryAccordionMenu();#}
 
     });
-
-    $(function () {
-    	var flag1 = 0;
-        //顶部导航切换
-        $("#demo-list li").click(function () {
-            $("#demo-list li.active").removeClass("active")
-            $(this).addClass("active");
-        })  
-    })
 </script>
 <script src="/static/js/jquery-smartMenu.js"></script>
 <script type="text/javascript" src="/static/js/intro.js"></script>

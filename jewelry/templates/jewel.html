@@ -8,7 +8,7 @@
     <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.css" rel="stylesheet">
     <link href="/static/css/new/style.css" rel="stylesheet" type="text/css">
     <link href="/static/css/new/jewel.css" rel="stylesheet" type="text/css">
-	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script src="/static/js/jquery-2.0.0.min.js"></script>
 	<script src="//cdn.bootcss.com/tether/1.4.0/js/tether.min.js"></script>
 	<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="/static/js/jquery-accordion-menu.js" ></script>
@@ -21,10 +21,16 @@
     <!--启动CloudZoom就可以了，quickStart()立即启动-->
     <script type="text/javascript" src="/static/js/uaredirect.js"></script>
     <script type="text/javascript">uaredirect("/index_mob/series_mob");</script>
-
+    <script type="text/javascript" src="/static/js/thumbelina.js"></script>
+    <link href="/static/css/thumbelina.css" rel="stylesheet" type="text/css">
+    <script>
+        if (/(iPad)/i.test(navigator.userAgent)) {
+            window.location.href='/index_pad/series_pad';
+        }
+    </script>
     <style>
         /*外层盒子和里边图片的  一点点样式*/
-        .jqueryzoom { position: relative; padding: 0; width: 100%; height: 85%; display: inline-block; }
+        .jqueryzoom { position: relative; padding: 0; width: 100%; height: calc(100% - 70px); display: inline-block; }
         /*放大镜是基于图片大小自动生成的，每次都要把jqueryzoom中img的大小和jqueryzoom盒子大小设置为一样的，不然放大镜滑块有可能溢出*/
         .jqueryzoom img {width: 100%; height:100%;}
         .cloudzoom-gallery-active{opacity: .5}
@@ -34,15 +40,24 @@
 <body>
     <div id="content">
         <div id="upMenu">
-            <div class="title"><a href="/">YILAN JEWELRY</a></div>
+            <div class="title"><a href="/"><img class="imgLogo" src="/static/images/icons/title.png"/></a></div>
             <div class="openMenu"></div>
             <div class="menu" style="display: none;">
                 <a href="/series/">系列</a>
-                <a href="/introduction/">设计师</a>
+                <a href="/introduction/">品牌</a>
                 <a class="engMenu changeLanguage" href="#">EN</a>
             </div>
-            <div class="search">
-                <a class="sea" href="javascript:void(0);" target="_blank"><i class="fa fa-search fa-lg"></i></a>
+             <div class="rightIcon">
+                 <div class="searchBox" style="display: none;">
+                    <input class="searchText" type="text"  placeholder="系列名称"/>
+                    <div class="results">
+{#                        <a href="#">asd</a>#}
+{#                        <a href="#">qwe</a>#}
+{#                        <a href="#">try</a>#}
+                    </div>
+                </div>
+                <a href="javascript:void(0);"><div class="search"></div></a>
+                <a href="https://shop326567492.taobao.com/"><div class="shop"></div></a>
             </div>
         </div>
 
@@ -53,15 +68,19 @@
     {#				 data-cloudzoom="zoomSizeMode:'lens', startMagnification:1.2, lensWidth:250, lensHeight:250,#}
     {#				  zoomImage: 'images/2.jpg', autoInside: 30"/>#}
                 </div>
-      <!--想切换多张图片，只需要改下面img中src中的路径，以及data-cloudzoom中两个img的路径，注意data-cloudzoom要和img中的路径一摸一样-->
-                <ul id="imgList">
-    {#				<li>#}
-    {#					<img class="cloudzoom-gallery cloudzoom-gallery-active" src="images/2.jpg" data-cloudzoom="useZoom:'.cloudzoom',image:'images/2-m.jpg',zoomImage:'images/2.jpg'"/>#}
-    {#				</li>#}
-    {#				<li>#}
-    {#					<img class="cloudzoom-gallery" src="images/3.jpg" data-cloudzoom="useZoom:'.cloudzoom',image:'images/3-m.jpg',zoomImage:'images/3.jpg'"/>#}
-    {#				</li>#}
-                </ul>
+                <div id="sliderImg">
+{#                    <div class="thumbelina-but horiz left"><</div>#}
+          <!--想切换多张图片，只需要改下面img中src中的路径，以及data-cloudzoom中两个img的路径，注意data-cloudzoom要和img中的路径一摸一样-->
+                    <ul id="imgList">
+        {#				<li>#}
+        {#					<img class="cloudzoom-gallery cloudzoom-gallery-active" src="images/2.jpg" data-cloudzoom="useZoom:'.cloudzoom',image:'images/2-m.jpg',zoomImage:'images/2.jpg'"/>#}
+        {#				</li>#}
+        {#				<li>#}
+        {#					<img class="cloudzoom-gallery" src="images/3.jpg" data-cloudzoom="useZoom:'.cloudzoom',image:'images/3-m.jpg',zoomImage:'images/3.jpg'"/>#}
+        {#				</li>#}
+                    </ul>
+{#                    <div class="thumbelina-but horiz right">></div>#}
+                </div>
             </div>
             <div id="text">
     {#	    	<h3>系列名字</h3>#}
@@ -71,7 +90,7 @@
         </div>
 {#        <div id="footer">#}
 {#            <div class="contact">#}
-{#                <a class="ins con" href="https://www.instagram.com/yilanliu_lyl/" target="_blank"><i class="fa fa-instagram"></i></a>#}
+{#                <a class="ins con" href="https://www.instagram.com/yilanjewellery/" target="_blank"><i class="fa fa-instagram"></i></a>#}
 {#                <a class="wechat con" href="#"><i class="fa fa-wechat"></i></a>#}
 {#                <a class="weibo con" href="https://weibo.com/u/5627347173" target="_blank"><i class="fa fa-weibo"></i></a>#}
 {#                <a class="email con" href="#"><i class="fa fa-envelope-o"></i></a>#}
@@ -106,22 +125,43 @@
                         </button>
                         <h4 class="modal-title" id="myModalLabel">邮 件</h4>
                         <div class="selector">
-{#                            <div class="append">#}
-{#                                <img style="margin-left: 12.5%" src="/static/images/wechat.png">#}
-{#                            </div>#}
+                            <div class="append email">
+								<ul style="margin-left: 10%;">
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">邮 箱</p>
+										<input class="yourEmail" type="email" placeholder="您的邮箱" style="width: 80%; margin: 0; height: 25px;"/>
+									</li>
+                                    <li>
+										<p style="margin-top: 2%; font-weight: bold;">标 题</p>
+										<input class="title" type="text" placeholder="邮件标题" style="width: 80%; margin: 0; height: 25px;"/>
+									</li>
+									<li>
+										<p style="margin-top: 2%; font-weight: bold;">内 容</p>
+										<textarea name="content" class="content" type="text"
+										clos=",50" rows="5" warp="hard" placeholder="想要输入的内容" style="width: 90%;"></textarea>
+									</li>
+								</ul>
+							</div>
+                            <div class="modal-footer" style="margin-right: 7%;">
+                                <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                <button type="button" class="btn btn-primary send" data-dismiss="modal">发送</button>
+                            </div>
                         </div>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
     </div>
+	<script type="text/javascript">document.write(unescape("%3Cspan id='cnzz_stat_icon_1278766764' style='display: none' %3E%3C/span%3E%3Cscript src='https://s9.cnzz.com/z_stat.php%3Fid%3D1278766764%26show%3Dpic1' type='text/javascript'%3E%3C/script%3E"));</script>
 </body>
-<script>//导航栏效果
-    $(".wechat").click(function(){
-        $('#wechatModal').modal('show');
-    });
-    $(".email").click(function(){
-        $('#emailModal').modal('show');
-    });
+<script>
+    var bigHeight = $("#upMenu").height();
+    var titleHeight = $(".title").outerHeight(true);
+    var space = bigHeight - titleHeight;
+    space = (space - 20.6) / 2;
+    $(".openMenu").css("display", "inline-block");
+    $(".openMenu").css("margin-top", space);
+    $(".rightIcon").css("display", "block");
+    $(".rightIcon").css("top", titleHeight + space);
 </script>
 </html>

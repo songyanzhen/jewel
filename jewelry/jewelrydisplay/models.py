@@ -9,6 +9,11 @@ class User(models.Model):
     password = models.CharField(max_length=32)
     email = models.EmailField()
     rule = models.IntegerField(default=0)
+#asdfasdf
+
+class media(models.Model):
+    id = models.AutoField(primary_key=True)
+    img = models.CharField(max_length=256)
 
 
 class series(models.Model):
@@ -16,8 +21,9 @@ class series(models.Model):
     intro = models.TextField(default="")
     seriesname_eng = models.TextField(default="")
     intro_eng = models.TextField(default="")
-    series_pic = models.CharField(max_length=32, default='')
+    series_pic = models.CharField(max_length=64, default='')
     series_sequence = models.IntegerField(default=0)
+    isPreview = models.BooleanField(default=True)
 
 
 class works(models.Model):
@@ -32,10 +38,13 @@ class picture_path(models.Model):
     picturepath = models.CharField(max_length=32)
     isFirst = models.BooleanField(default=False)
     isBroadcast = models.BooleanField(default=False)
+    isPreview = models.BooleanField(default=True)
 
 class introduction(models.Model):
     exper_cn = models.TextField()
     exper_eng = models.TextField()
     intro_cn = models.TextField()
     intro_eng = models.TextField()
+    story_cn = models.TextField()
+    story_eng = models.TextField()
     picture_name = models.CharField(max_length=256)

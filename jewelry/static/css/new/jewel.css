@@ -1,9 +1,10 @@
 #main {
 	min-width: 1000px;
 	position: absolute;
-	top: 15%;
+	top: 120px;
 	width: 100%;
-	height: 85%;
+	/*height: 87%;*/
+	height: calc(100% - 120px);
 }
 #main > div {
     vertical-align: top;
@@ -12,23 +13,24 @@
 #photo {
 	display: inline-block;
 	padding-left: 4%;
-	height: 90%;
+	/*height: 90%;*/
+	height: calc(100% - 60px);
 	width: 50%;
 }
 /*图片列表*/
-ul {
+#imgList {
     min-width: 100%;
     margin-top: 5px;
     height: 75px;
-    overflow-y: hidden;
     white-space:nowrap;
     display: -webkit-box;
-    /*overflow-x: auto;*/
-    -webkit-overflow-scrolling:touch;
+    overflow-y: hidden;
+    overflow-x: hidden;
+    text-overflow:ellipsis;
 }
-::-webkit-scrollbar {
-    display: none;
-}
+/*::-webkit-scrollbar {*/
+    /*display: none;*/
+/*}*/
 img {
 	object-fit: cover;
 }
@@ -48,7 +50,8 @@ img {
 #text {
 	display: inline-block;
 	margin-left: 4%;
-	height: 100%;
+	/*height: 90%;*/
+	height: calc(100% - 60px);
 	width: 41.5%;
     /*text-align: left !important;*/
     color: #333333;
@@ -72,19 +75,20 @@ img {
 }
 
 #footer {
-    min-width: 1000px;
-	position: absolute;
-	top: 90%;
+    position: absolute;
+	/*top: 90%;*/
+	bottom: 0;
 	width: 100%;
-	height: 10%;
+	/*height: 10%;*/
+	height: 60px;
 	text-align: center;
 }
 #footer p {
-	padding-top: 0.5%;
+	padding-top: 5px;
     color: #666666;
 }
 .contact {
-    padding-top: 1%;
+    padding-top: 10px;
 	width: 50%;
     margin-left: 25%;
 	text-align: center;
@@ -101,3 +105,32 @@ img {
 .con:hover, .con:active{
 	color: #333333 !important;
 }
+
+/*::-webkit-scrollbar { !*滚动条整体样式*!*/
+    /*!*width: 8px; !*高宽分别对应横竖滚动条的尺寸*!*!*/
+    /*height: 7px;*/
+/*}*/
+/*::-webkit-scrollbar-thumb {!*滚动条里面小方块*!*/
+    /*border-radius: 10px;*/
+     /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+    /*background: #666666;*/
+/*}*/
+/*::-webkit-scrollbar-track {!*滚动条里面轨道*!*/
+    /*-webkit-box-shadow: inset 0 0 5px rgba(0,0,0,0.2);*/
+    /*border-radius: 10px;*/
+    /*background: #cccccc;*/
+/*}*/
+#sliderImg {
+    position:relative;  /* Containers need relative or absolute position. */
+    margin-top: 10px;
+    width:100%;
+    height:64px;
+    /*border-top:1px solid #aaa;*/
+    /*border-bottom:1px solid #aaa;*/
+}
+/*.overSlider {*/
+    /*margin-left:20px;*/
+    /*margin-right:20px;*/
+    /*!*margin-top: 0 !important;*!*/
+    /*width: calc(100% - 40px) !important;*/
+/*}*/

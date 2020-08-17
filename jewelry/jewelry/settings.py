@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 """
 Django settings for jewelry project.
 
@@ -25,7 +27,7 @@ SECRET_KEY = '=2&*skxlz-989s)y9i-lkv_ft_mylclk8q)k55$un3qo3gn0#2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [u'127.0.0.1',u'47.94.101.205',u'106.39.42.41', u'39.106.143.27']
+ALLOWED_HOSTS = [u'127.0.0.1',u'47.94.101.205',u'106.39.42.41', u'39.106.143.27', u'www.yilanjewelry.com']
 
 
 # Application definition
@@ -79,16 +81,15 @@ DATABASES = {
     'default': {
 
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'new_jewelry_works',
-        # jewelry_works
-        # 'HOST' : '39.106.143.27',
-        'HOST' : '127.0.0.1',
-        # 'USER' : 'jewel',
-        # 'PASSWORD' : 'nbjewel',
-        'USER' : 'root',
-        'PASSWORD' : '',
+        # 'NAME': 'new_jewelry_works',
+        # 'HOST' : '127.0.0.1',
+        # 'USER' : 'root',
+        # 'PASSWORD' : '',
+        'NAME': 'jewelry_works',
+        'HOST' : '39.106.143.27',
+        'USER' : 'jewel',
+        'PASSWORD' : 'nbjewel',
         'PORT' : '3306',
-
     }
 }
 
@@ -137,8 +138,21 @@ STATICFILES_DIRS = [
 ]
 LOGIN_URL = '/login/'
 
-EMAIL_HOST = 'smtp.qq.com'
-EMAIL_HOST_USER = '1173568600@qq.com'
-EMAIL_HOST_PASSWORD = 'rsyrnvjesqjuggdd'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
+
+# EMAIL_HOST = 'smtp.qq.com'
+# EMAIL_HOST_USER = '1173568600@qq.com'
+# EMAIL_HOST_PASSWORD = 'rsyrnvjesqjuggdd'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+# 163 SMTP 配置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.163.com'  # 新浪 smtp 服务器地址
+EMAIL_PORT = 25  # 端口号
+#发送邮件的邮箱
+EMAIL_HOST_USER = 'yilanjewelry@163.com'
+#在邮箱中设置的客户端授权密码
+EMAIL_HOST_PASSWORD = '927037lyl'
+#收件人看到的发件人
+EMAIL_FROM = 'yilanjewelry@163.com'
+

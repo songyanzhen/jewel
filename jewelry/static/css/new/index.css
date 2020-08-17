@@ -5,14 +5,17 @@
 #main {
 	min-width: 1000px;
 	position: absolute;
-	top: 15%;
+	/*top: 13%;*/
+	top: 120px;
 	width: 100%;
-	height: 85%;
+	/*height: 87%;*/
+	height: calc(100% - 120px);
     overflow: hidden;
 }
 .pic {
 	width: 100%;
-	height: 90%;
+	/*height: 90%;*/
+	height: calc(100% - 60px);
 	position:absolute;
 	left:0;
 	top:0;
@@ -22,17 +25,19 @@
 /*/footer*/
 #footer {
     position: absolute;
-	top: 90%;
+	/*top: 90%;*/
+	bottom: 0;
 	width: 100%;
-	height: 10%;
+	/*height: 10%;*/
+	height: 60px;
 	text-align: center;
 }
 #footer p {
-	padding-top: 0.5%;
+	padding-top: 5px;
     color: #666666;
 }
 .contact {
-    padding-top: 1%;
+    padding-top: 10px;
 	width: 50%;
     margin-left: 25%;
 	text-align: center;
@@ -49,3 +54,62 @@
 .con:hover, .con:active{
 	color: #333333 !important;
 }
+
+#dots {
+    position: absolute;
+    z-index: 999;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    bottom: 8.5%;
+    text-align: center;
+}
+.dot {
+    display: inline-block;
+    z-index: 999;
+    width: 10px;
+    height: 10px;
+    border-radius: 10px;
+    background-color: #ffffff;
+    margin: 0 5px;
+}
+
+.swiper-button--next,
+.swiper-button--prev {
+	position: absolute;
+    top: 50%;
+    width: 47px;
+    height: 84px;
+	margin-top: -72px;
+	padding: 20px 10px;
+    z-index: 10;
+    cursor: pointer;
+    background-size: 27px 44px;
+    background-position: center;
+	background-repeat: no-repeat;
+	transition: all .2s ease-in;
+}
+
+.swiper-button--next {
+	background-image: url(/static/images/arrows/right_arrow1v2.png);
+	right: 10px;
+	opacity: 0;
+}
+.swiper-button--next:hover{
+	background-image: url(/static/images/arrows/right_arrow2v2.png);
+}
+
+.swiper-button--prev {
+	background-image: url(/static/images/arrows/left_arrow1v2.png);
+	left: 10px;
+	opacity: 0;
+}
+
+.swiper-button--prev:hover{
+	background-image: url(/static/images/arrows/left_arrow2v2.png);
+}
+
+#main:hover .swiper-button--next,
+#main:hover .swiper-button--prev {
+	opacity: 1;
+}
+

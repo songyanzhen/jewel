@@ -663,9 +663,9 @@ def hasLogin(request):
 def index_mob(request):
     return render(request, "mob/index_mob.html")
 def series_mob(request):
-    return render(request,"mob/series_mob.html")
+    return render(request, "mob/series_mob.html")
 def jewel_mob(request):
-    return render(request,"mob/jewel_mob.html")
+    return render(request, "mob/jewel_mob.html")
 
 def introduction_mob(request):
     introduction = models.introduction.objects.get(id = 1)
@@ -676,7 +676,7 @@ def introduction_mob(request):
     j['image'] = introduction.picture_name
     print(j)
     # return HttpResponse(json.dumps(j, ensure_ascii=False), content_type="application/json, charset=utf-8")
-    return render(request,"mob/introduction_mob.html", {'intro':introduction.intro_cn, 'exper': introduction.exper_cn, 'image': introduction.picture_name})
+    return render(request, "mob/introduction_mob.html", {'intro':introduction.intro_cn, 'exper': introduction.exper_cn, 'image': introduction.picture_name})
 
 def index_mob_eng(request):
     return render(request, "mob_eng/index_mob_eng.html")

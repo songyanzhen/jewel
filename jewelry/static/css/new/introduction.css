@@ -1,39 +1,50 @@
 #main {
 	min-width: 1000px;
 	position: absolute;
-	top: 15%;
-	width: 100%;
-	height: 85%;
+	top: 120px;
+	/* padding: 0 4%; */
+	padding: 0 4%;
+	/*width: 100%;*/
+	/*height: 87%;*/
+	height: calc(100% - 120px);
 }
 #main > div {
+	margin: 20px auto 60px;
     vertical-align: top;
+}
+
+.infotTitle {
+	font-size: 18px;
+	color: #333333;
+	text-align: center;
+	padding-bottom: 15px;
+}
+
+.storyPre {
+	text-align: center;
+}
+
+.founderInfo {
+	display: flex;
+	justify-content: center;
 }
 
 #photo {
     position: relative;
-	display: inline-block;
-	padding-left: 4%;
-	height: 90%;
-	width: 64%;
+	width: 38%;
     vertical-align: middle;
+	margin-right: 1%;
 }
 #photo img {
-    /*padding-left: 4%;*/
     width: 100%;
 	height: 100%;
     object-fit: cover;
-    /*position: absolute;*/
-    /*top:50%;*/
-    /*left:50%;*/
-    /*transform: translate(-50%,-50%);*/
 }
 
 #text {
-	display: inline-block;
-	margin-left: 1.5%;
-	height: 90%;
-	width: 30%;
+	width: 38%;
     color: #333333;
+	margin-left: 1%;
 }
 #text h3 {
     font-size: 18px;
@@ -47,27 +58,42 @@
     text-justify:inter-ideograph;
 }
 .text1 {
-    padding-bottom: 5px;
-    border-bottom: 1px solid #666666;
+	margin-top: -4px;
+    padding-bottom: 12px;
+    border-bottom: thin solid #666666;
 }
 .text2 {
-    padding-top: 8px;
+    padding-top: 12px;
+}
+
+.mediaBox {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+
+.mediaImg {
+	width: 200px;
+    margin-bottom: 15px;
 }
 
 #footer {
     min-width: 1000px;
-	position: absolute;
-	top: 90%;
+	/*position: absolute;*/
+	bottom: 0;
 	width: 100%;
-	height: 10%;
+	/*height: 10%;*/
+	height: 60px;
 	text-align: center;
+	margin-bottom: 0 !important;
 }
 #footer p {
-	padding-top: 0.5%;
+	padding-top: 5px;
     color: #666666;
 }
 .contact {
-    padding-top: 1%;
+    padding-top: 10px;
 	width: 50%;
     margin-left: 25%;
 	text-align: center;
